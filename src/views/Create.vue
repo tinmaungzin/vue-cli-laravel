@@ -30,6 +30,7 @@
 <script>
 
     import { create_employee_mutation} from "../graphql";
+    import {mapState} from "vuex";
     export default {
         name: 'Create',
         data(){
@@ -47,8 +48,6 @@
 
             create () {
                 this.validationErrors = [];
-                // const newEmployee = this.newEmployee;
-                // this.newEmployee = '';
                 this.$apollo
                     .mutate({
                         mutation: create_employee_mutation,
@@ -62,29 +61,25 @@
                         // update: (store, { data: { createEmployee } }) => {
                         //     const data = store.readQuery({
                         //         query: all_employees_query,
-                        //         variables(){
-                        //             return{
-                        //                 limit: 5,
-                        //                 page: 1,
-                        //             }
+                        //         variables: {
+                        //            limit: 5,
+                        //             page: 7
                         //         }
                         //     });
-                        //     console.log(data);
-                        //     // data.push(createEmployee);
-                        //     // console.log('after pushing new item:',data);
-                        //     // store.writeQuery({
-                        //     //     query: all_employees_query,data })
-                        // },
-                        // optimisticResponse: {
-                        //     __typename: 'Mutation',
-                        //     createEmployee: {
-                        //         __typename: 'Employee',
-                        //         label: newEmployee,
-                        //     },
+                        //     data.employees.data.push(createEmployee);
+                        //     this.lastPage = Math.ceil(data.employees.total/5);
+                        //     // console.log(this.lastPage)
+                        //     store.writeQuery({
+                        //         query: all_employees_query,
+                        //         variables: {
+                        //             limit: 5,
+                        //             page: this.lastPage
+                        //         },
+                        //         data })
                         // },
                     })
                     .then(response => {
-                        // console.log(response);
+                        console.log(response);
                         if(response){
                             this.$router.replace('/');
                             location.reload();
@@ -109,7 +104,9 @@
         //         }
         //     },
         // },
-
+       computed: mapState([
+           'lastPage'
+       ])
 
     }
 </script>

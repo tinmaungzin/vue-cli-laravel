@@ -5,9 +5,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+      lastPage: 1,
   },
   mutations: {
-
+        setLastPage(state,data){
+            state.lastPage = data;
+        }
   },
   actions: {
   },

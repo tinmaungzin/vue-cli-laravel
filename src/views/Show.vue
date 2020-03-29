@@ -31,7 +31,7 @@
         name: 'Show',
         data(){
             return{
-                employee: {},
+                employee: '',
                 id: this.$route.params.id,
             }
         },
@@ -43,16 +43,15 @@
                         variables: {
                             id: this.id
                         },
-                        update: (store, { data: { deleteEmployee } }) => {
-                            const data = store.readQuery({
-                                query: all_employees_query
-                            });
-                            data.employees.pop(deleteEmployee);
-                            store.writeQuery({ query: all_employees_query, data })
-                        },
+                        // update: (store, { data: { deleteEmployee } }) => {
+                        //     const data = store.readQuery({
+                        //         query: all_employees_query
+                        //     });
+                        //     data.employees.pop(deleteEmployee);
+                        //     store.writeQuery({ query: all_employees_query, data })
+                        // },
                     })
                     .then(response => {
-                        console.log(response);
                         this.$router.replace('/');
                         location.reload();
                     })

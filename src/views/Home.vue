@@ -47,7 +47,6 @@
                 employees: [],
                 limit: 5,
                 page: 1,
-                pageIndex: 1,
             }
         },
         methods: {
@@ -68,6 +67,9 @@
                 }
             },
         },
+        updated(){
+            this.$store.commit('setLastPage',Math.ceil(this.employees.total/this.limit))
+        }
 
     }
 </script>

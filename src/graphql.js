@@ -50,7 +50,7 @@ export const login_mutation = gql`mutation LoginMutation($username: String, $pas
 
 
 
-export const all_employees_query = gql`query AllEmployeesQuery($limit: Int!, $page: Int!) {
+export const all_employees_query = gql`query AllEmployeesQuery($limit: Int, $page: Int) {
         employees(
             limit: $limit,
             page: $page
